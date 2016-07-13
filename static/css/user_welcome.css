@@ -1,0 +1,14 @@
+#welcome {
+	background: url('../pics/user_welcome_bg.jpg');
+	background-size: cover;
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	z-index: -100;
+}
+.jumbotron {
+	margin-top: 250px;
+	background-color: rgba(80,80,80,.5);
+	color: #fff;
+	text-align: center;
+}

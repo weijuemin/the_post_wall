@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CodingDojo Wall - Log in</title>
+    <script src="../static/js/jquery.js"></script>
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<script src="../static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <script src="../static/js/main.js"></script>
+</head>
+<body id="homePage">
+	<div class="background"></div>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="#">CodingDojo Wall</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav initial">
+					<li><a href="#">The Wall<span class="sr-only">(current)</span></a></li>
+					<li><a href="#">See others' posts</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">options <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+					<li><a href="#">Action</a></li>
+					<li><a href="#">Another action</a></li>
+					<li><a href="#">Something else here</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="#">Separated link</a></li>
+					<li role="separator" class="divider"></li>
+					<li><a href="#">One more separated link</a></li>
+					</ul>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right initial">
+					<li><a href="#">Link</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Log off</a></li>
+					</ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div id="lrWrap">
+		<form action="/login" method="post" id="loginForm">
+			<div>
+				<p>Email: <input type="text" name="email" value="{{ session['email'] }}""></p>
+				{% with messages = get_flashed_messages(category_filter=['email','registered']) %}
+					{% if messages %}
+						{% for message in messages %}
+							<p class="flash">{{ message }}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<p>Password: <input type="password" name="password"></p>
+				{% with messages = get_flashed_messages(category_filter=['password']) %}
+					{% if messages %}
+						{% for message in messages %}
+							<p class="flash">{{ message }}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+			</div><br>
+			{% with messages = get_flashed_messages(category_filter=['login']) %}
+				{% if messages %}
+					{% for message in messages %}
+						<p class="flash">{{ message }}</p>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+			<br>
+			<button class="btn btn-primary" type="submit">Login</button>
+		</form>
+		<form action="/register" method="post" id="registerForm">
+			<div>
+				<p>First name: <input type="text" name="fname" value="{{ session['fname'] }}"></p>
+				{% with messages = get_flashed_messages(category_filter=['fname']) %}
+					{% if messages %}
+						{% for message in messages %}
+							<p class="flash">{{ message }}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<p>Last name: <input type="text" name="lname" value="{{ session['lname'] }}"></p>
+				{% with messages = get_flashed_messages(category_filter=['lname']) %}
+					{% if messages %}
+						{% for message in messages %}
+							<p class="flash">{{ message }}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<p>Email: <input type="text" name="email" value="{{ session['email'] }}"></p>
+				{% with messages = get_flashed_messages(category_filter=['email']) %}
+					{% if messages %}
+						{% for message in messages %}
+							<p class="flash">{{ message }}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<p>Password: <input type="password" name="password"></p>
+				{% with messages = get_flashed_messages(category_filter=['password']) %}
+					{% if messages %}
+						{% for message in messages %}
+							<p class="flash">{{ message }}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<p>Confirm password: <input type="password" name="passwordConf"></p>
+				{% with messages = get_flashed_messages(category_filter=['passwordConf']) %}
+					{% if messages %}
+						{% for message in messages %}
+							<p class="flash">{{ message }}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+			</div><br>
+			{% with messages = get_flashed_messages(category_filter=['register']) %}
+				{% if messages %}
+					{% for message in messages %}
+						<p class="flash">{{ message }}</p>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+			<br>
+			<button class="btn btn-primary" type="submit">Register</button>
+		</form>
+		<div class="btn btn-link">
+			<span class="lrControl">Login</span>
+			<span class="lrControl">Register now</span>
+		</div>
+	</div>
+</body>
+</html>
