@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CodingDojo Wall - Log in</title>
+    <script src="../static/js/jquery.js"></script>
+	<link rel="stylesheet" href="../static/css/bootstrap.css">
+	<script src="../static/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../static/css/styles.css">
+    <link rel="stylesheet" href="../static/css/user_welcome.css">
+    <link rel="stylesheet" href="../static/css/wall.css">
+    <script src="../static/js/main.js"></script>
+</head>
+<body>
+	<div class="background" id="welcome"></div>
+	<nav class="navbar navbar-inverse">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				<a class="navbar-brand" href="/welcome">CodingDojo Wall</a>
+			</div>
+
+			<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+				<ul class="nav navbar-nav">
+					<li class="active"><a href="#">The Wall<span class="sr-only">(current)</span></a></li>
+					<li><a href="#">See others' posts</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">options <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">Separated link</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="#">One more separated link</a></li>
+					</ul>
+					</li>
+				</ul>
+
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="/wall">{{ user_name }}</a></li>
+					<li class="dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Account <span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li><a href="#">Action</a></li>
+						<li><a href="#">Another action</a></li>
+						<li><a href="#">Something else here</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a href="/">Log off</a></li>
+					</ul>
+					</li>
+				</ul>
+			</div><!-- /.navbar-collapse -->
+		</div><!-- /.container-fluid -->
+	</nav>
+	<div class="list-group sideBar">
+		<a href="#" class="list-group-item active">
+		Cras justo odio
+		</a>
+		<a href="#" class="list-group-item">Dapibus ac facilisis in</a>
+		<a href="#" class="list-group-item">Morbi leo risus</a>
+		<a href="#" class="list-group-item">Porta ac consectetur ac</a>
+		<a href="#" class="list-group-item">Vestibulum at eros</a>
+	</div>
+	<div class="mainBoard">
+		<div class="board">
+			<h3> Start posting now:</h2><hr>
+			<form action="/messages" method="post">
+				<textarea name="message" class="postContent" ></textarea>
+				{% with messages = get_flashed_messages(category_filter=['msg']) %}
+					{% if messages %}
+						{% for message in messages %}
+							<p class="flash">{{ message }}</p>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<input class="btn btn-default submitPost" type="submit" name="submit">
+			</form>
+		</div>
+		<div class="board boardOther">
+			<h4>Most recent posts</h4>
+			{% for i in range(0, len) %}
+			<div class="wallPost">
+				<p class="msgContent">{{ recentPosts[i]['message'] }}</p>
+				<div class="info">
+					<span>{{ recentPosts[i]['full_name'] }}</span> @
+					<span>{{ recentPosts[i]['updated_time'] }}</span>
+				</div>
+				<p class="hidden">{% set message_id = (recentPosts[i]['message_id']) %}</p>
+			</div>
+			<div class="displayComments">
+				{% for j in range(0,lenCmt) %}
+					{% if getComments[j]['message_id'] == message_id %}
+						<p>{{ getComments[j]['user_name']}} @ {{ getComments[j]['comment_time'] }}: <span>{{ getComments[j]['comment'] }}</span></p>
+					{% endif %}
+				{% endfor %}
+			</div>
+			<form action="/comments" method="post" class="comment">
+				<textarea name="comment" class="form-control commentBar" placeholder="Leave a comment"></textarea>
+				<input  class="hidden" type="text" name="commentGetMsgId" value="{{ message_id }}">
+				<input type="submit" value="comment" class="btn btn-default commentSubmit">
+			</form><br><br>
+			{% endfor %}
+		</div>
+	</div>
+</body>
+</html>
