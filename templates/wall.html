@@ -71,7 +71,7 @@
 		<div class="board">
 			<h3> Start posting now:</h2><hr>
 			<form action="/messages" method="post">
-				<textarea name="message" class="postContent" cols="160" rows="7"></textarea>
+				<textarea name="message" class="postContent" ></textarea>
 				{% with messages = get_flashed_messages(category_filter=['msg']) %}
 					{% if messages %}
 						{% for message in messages %}
