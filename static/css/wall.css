@@ -1,17 +1,19 @@
 .sideBar {
-	width: 300px;
+	width: 15%;
 	min-height: 500px;
-	margin-left: 400px;
+	margin-left: 15%;
 	display: inline-block;
 	vertical-align: top;
 	background: #fff;
 }
 .mainBoard {
+	width: 53%;
 	display: inline-block;
 	vertical-align: top;
+	margin-left: 0;
 }
 .board {
-	width: 1200px;
+	width: 8 0%;
 	margin: 0 auto;
 	padding: 20px 15px;
 	text-align: left;
@@ -25,6 +27,8 @@
 	text-align: left;
 }
 .postContent {
+	width: 95%;
+	min-height: 100px;
 	background: rgba(256,256,256,.9);
 }
 .postContent-focus {
@@ -46,7 +50,7 @@
 	font-weight: bold;
 }
 .wallPost {
-	width: 1100px;
+	width: 95%;
 	margin: 15px auto;
 	padding-top: 10px;
 	background-color: rgba(256,256,256,.9);
@@ -69,9 +73,9 @@
 	margin-left: 650px;
 }
 .commentBar {
-	width: 800px;
+	width: 75%;
 	min-height: 30px;
-	margin-left: 200px;
+	margin-left: 10%;
 	display: inline-block;
 	vertical-align: top;
 }
@@ -84,7 +88,7 @@
 }
 .displayComments {
 	text-align: left;
-	padding-left: 70px;
+	padding-left: 5%;
 	padding-right: 70px;
 	color: rgb(40,40,40);
 }
